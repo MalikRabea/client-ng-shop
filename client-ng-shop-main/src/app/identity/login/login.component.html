@@ -1,0 +1,119 @@
+<div class="login-page">
+  <div class="login-container">
+    <!-- Left side: Image -->
+    <div class="login-image"></div>
+
+    <!-- Right side: Form -->
+    <div class="login-form animate-slide">
+      <h2 class="text-center mb-4">Welcome Back</h2>
+      <p class="text-center text-muted mb-4">
+        Login to continue shopping at <b>MyShop</b>
+      </p>
+
+      <form [formGroup]="formGroup" (ngSubmit)="Submit()">
+        <!-- Email -->
+        <div class="form-group mb-3">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            formControlName="email"
+            [class.is-valid]="_email.valid"
+            [class.is-invalid]="_email.invalid && _email.touched"
+            placeholder="Enter your email"
+          />
+          <div class="text-danger small mt-1" *ngIf="_email.hasError('required')">
+            Email is required
+          </div>
+          <div class="text-danger small mt-1" *ngIf="_email.hasError('email')">
+            Invalid email format
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div class="form-group mb-3">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            formControlName="password"
+            [class.is-valid]="_password.valid"
+            [class.is-invalid]="_password.invalid && _password.touched"
+            placeholder="Enter your password"
+          />
+          <div class="text-danger small mt-1" *ngIf="_password.hasError('required')">
+            Password is required
+          </div>
+          <div class="text-danger small mt-1" *ngIf="_password.hasError('pattern')">
+            Must contain number, special char & 8+ chars
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <button class="btn btn-primary w-100 mb-3" [disabled]="formGroup.invalid">
+          Login <i class="fa fa-sign-in"></i>
+        </button>
+
+        <div class="d-flex justify-content-between">
+          <a routerLink="/Account/Register" class="btn btn-outline-secondary">
+            Create Account
+          </a>
+          <button
+            type="button"
+            class="btn btn-link"
+            data-bs-toggle="modal"
+            data-bs-target="#forgetModal"
+          >
+            Forgot Password?
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Forget Password Modal -->
+<div
+  class="modal fade"
+  id="forgetModal"
+  tabindex="-1"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Reset Password</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <input
+          type="email"
+          [(ngModel)]="emailModel"
+          name="forgetEmail"
+          class="form-control"
+          placeholder="Enter your email"
+        />
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+        <button
+          type="button"
+          (click)="SendEmailForgetpassword()"
+          class="btn btn-primary"
+        >
+          Send
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

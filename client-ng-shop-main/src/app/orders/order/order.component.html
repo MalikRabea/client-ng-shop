@@ -1,0 +1,90 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="table-responsive shadow-lg rounded">
+        <table class="table table-hover align-middle custom-table">
+          <thead class="table-header">
+            <tr>
+              <th>#Order</th>
+              <th>Image</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Total</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of orders; track $index) {
+            <tr>
+              <td routerLink="/orders/item" [queryParams]="{ id: item.id }" class="order-link">
+                #{{ item.id }}
+              </td>
+              <td>
+                <div class="image-container">
+                  <img
+                    (click)="OpenModal(item.orderItems)"
+                    class="order-image"
+                    src="https://localhost:44388/{{ getFirstImageOrderItem(item.orderItems) }}"
+                    alt="Product"
+                  />
+                  @if (item.orderItems.length > 1) {
+                  <span class="more-image">+{{ item.orderItems.length - 1 }}</span>
+                  }
+                </div>
+              </td>
+              <td>{{ item.orderDate | date:'mediumDate' }}</td>
+              <td>
+                <span
+                  class="status-badge"
+                  [ngClass]="{
+                    'pending': item.status === 'Pending',
+                    'failed': item.status === 'PaymentFaild',
+                    'success': item.status === 'PaymentReceived'
+                  }"
+                >
+                  {{ item.status }}
+                </span>
+              </td>
+              <td class="fw-bold">{{ item.total | currency }}</td>
+              <td>
+                <button
+                  routerLink="/orders/item"
+                  [queryParams]="{ id: item.id }"
+                  class="btn btn-outline-primary btn-sm rounded-pill"
+                >
+                  <i class="fa fa-info-circle"></i> View
+                </button>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="ImageModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content shadow-lg rounded-4">
+      <div class="modal-header border-0">
+        <button (click)="CloseModal()" type="button" class="btn-close"></button>
+      </div>
+      <div class="modal-body text-center">
+        @for (item of UrlImageModal; track $index) {
+        <img
+          src="https://localhost:44388/{{ item }}"
+          class="order-images mb-3"
+          alt="Product"
+        />
+        }
+      </div>
+      <div class="modal-footer border-0">
+        <button (click)="CloseModal()" type="button" class="btn btn-secondary rounded-pill">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

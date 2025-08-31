@@ -1,0 +1,65 @@
+.address-actions {
+  button {
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 8px 16px;
+  }
+
+  .toggle-btn {
+    border: none;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &.enabled {
+      background: #4caf50;
+      color: white;
+
+      &:hover {
+        background: #43a047;
+      }
+    }
+
+    &.disabled {
+      background: #e53935;
+      color: white;
+
+      &:hover {
+        background: #c62828;
+      }
+    }
+  }
+}
+
+.address-form {
+  margin-top: 20px;
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  mat-form-field {
+    width: 100%;
+    background: #fafafa;
+    border-radius: 8px;
+
+    ::ng-deep .mat-mdc-text-field-wrapper {
+      border-radius: 8px;
+    }
+  }
+
+  .next-btn {
+    margin-top: 24px;
+    text-align: right;
+
+    button {
+      font-weight: bold;
+      border-radius: 8px;
+      padding: 8px 20px;
+    }
+  }
+}

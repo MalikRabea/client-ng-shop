@@ -1,0 +1,218 @@
+.about-page-modern {
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+  line-height: 1.6;
+
+  /* Hero Banner */
+  .hero-banner {
+    background: linear-gradient(135deg, #3f51b5, #ff4081);
+    color: #fff;
+    text-align: center;
+    padding: 100px 20px;
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 15px;
+
+      span {
+        color: #ffe600;
+      }
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 25px;
+    }
+
+    .btn-primary {
+      background: #fff;
+      color: #3f51b5;
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: #ffe600;
+        color: #3f51b5;
+      }
+    }
+  }
+
+  /* Card Sections */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+
+    .card {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      padding: 30px;
+      margin-bottom: 50px;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: translateY(-5px);
+      }
+
+      &.reverse {
+        flex-direction: row-reverse;
+
+        @media (max-width: 768px) {
+          flex-direction: column;
+        }
+      }
+
+      .card-image img {
+        width: 100%;
+        border-radius: 12px;
+      }
+
+      .card-content {
+        flex: 1;
+
+        h2 {
+          font-size: 2rem;
+          margin-bottom: 15px;
+
+          span {
+            color: #ff4081;
+          }
+        }
+
+        p {
+          font-size: 1rem;
+          color: #555;
+        }
+      }
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  }
+
+  /* Values Grid */
+  .values {
+    text-align: center;
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 40px;
+      color: #3f51b5;
+    }
+
+    .values-grid {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      .value-card {
+        background: #fff;
+        border-radius: 16px;
+        padding: 30px 20px;
+        width: 250px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+
+        &:hover {
+          transform: translateY(-5px);
+        }
+
+        i {
+          font-size: 2rem;
+          color: #ff4081;
+          margin-bottom: 15px;
+        }
+
+        h3 {
+          font-size: 1.3rem;
+          margin-bottom: 10px;
+        }
+
+        p {
+          font-size: 0.95rem;
+          color: #555;
+        }
+      }
+    }
+  }
+
+  /* Contact Section */
+  .contact {
+    text-align: center;
+
+    .contact-card {
+      background: #3f51b5;
+      color: #fff;
+      padding: 50px 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+
+      h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+      }
+
+      p {
+        font-size: 1rem;
+        margin-bottom: 25px;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 25px;
+
+        li {
+          font-size: 1rem;
+          margin-bottom: 10px;
+          a {
+            color: #ffe600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+
+      .btn-secondary {
+        background: #ffe600;
+        color: #3f51b5;
+        padding: 12px 30px;
+        border-radius: 50px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background: #fff;
+          color: #3f51b5;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-banner {
+      h1 {
+        font-size: 2rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+    }
+  }
+}

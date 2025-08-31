@@ -1,0 +1,97 @@
+<div class="login-page">
+  <div class="login-container">
+    <!-- Left side: Image -->
+    <div class="login-image"></div>
+
+    <!-- Right side: Form -->
+    <div class="login-form animate-slide">
+      <h2 class="text-center mb-4">Create Account</h2>
+      <p class="text-center text-muted mb-4">
+        Register to start shopping at <b>MyShop</b>
+      </p>
+
+      <form [formGroup]="fromGroup" (ngSubmit)="Submit()">
+        <!-- UserName -->
+        <div class="form-group mb-3">
+          <label for="username">UserName</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="UserName"
+            [class.is-valid]="_username.valid"
+            [class.is-invalid]="_username.invalid && _username.touched"
+            placeholder="Enter your username"
+          />
+          <div class="text-danger small mt-1" *ngIf="_username.invalid && _username.touched">
+            UserName is required
+          </div>
+        </div>
+
+        <!-- DisplayName -->
+        <div class="form-group mb-3">
+          <label for="DisplayName">Display Name</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="DisplayName"
+            [class.is-valid]="_DisplayName.valid"
+            [class.is-invalid]="_DisplayName.invalid && _DisplayName.touched"
+            placeholder="Enter your display name"
+          />
+          <div class="text-danger small mt-1" *ngIf="_DisplayName.invalid && _DisplayName.touched">
+            Display Name is required
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group mb-3">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            formControlName="email"
+            [class.is-valid]="_email.valid"
+            [class.is-invalid]="_email.invalid && _email.touched"
+            placeholder="Enter your email"
+          />
+          <div class="text-danger small mt-1" *ngIf="_email.hasError('required')">
+            Email is required
+          </div>
+          <div class="text-danger small mt-1" *ngIf="_email.hasError('email')">
+            Invalid email format (Example: testexample.com)
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div class="form-group mb-3">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            formControlName="password"
+            [class.is-valid]="_password.valid"
+            [class.is-invalid]="_password.invalid && _password.touched"
+            placeholder="Enter your password"
+          />
+          <div class="text-danger small mt-1" *ngIf="_password.hasError('required')">
+            Password is required
+          </div>
+          <div class="text-danger small mt-1" *ngIf="_password.hasError('pattern')">
+            Password must contain at least one number, one special character (#$!.), and be at least 8 characters long.
+          </div>
+        </div>
+
+        <!-- Button -->
+        <button class="btn btn-primary w-100 mb-3" [disabled]="fromGroup.invalid">
+          Register <i class="fa fa-user-plus"></i>
+        </button>
+
+        <div class="d-flex justify-content-between">
+          <a routerLink="/Account/Login" class="btn btn-outline-secondary">
+            Already have an account?
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

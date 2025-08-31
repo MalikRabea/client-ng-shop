@@ -1,0 +1,76 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-lg sticky-top">
+  <div class="container">
+    
+    <!-- Logo -->
+    <a class="navbar-brand d-flex align-items-center fw-bold fs-4" routerLink="/">
+      <img src="https://cdn-icons-png.flaticon.com/512/3081/3081648.png" 
+       alt="Shop Logo" width="35" class="me-2 rounded">
+        E-Shop
+        </a>
+
+    <!-- Toggler -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+
+      <!-- Left Menu -->
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item"><a routerLink="/" class="nav-link">🏠 Home</a></li>
+        <li class="nav-item"><a routerLink="/shop" class="nav-link">🛍️ Shop</a></li>
+        <li class="nav-item"><a routerLink="/best-sellers" class="nav-link" href="#">⭐ Best Seller</a></li>
+        <li class="nav-item"><a routerLink="/about" class="nav-link" href="#">ℹ️ About Us</a></li>
+      </ul>
+
+      <!-- Search -->
+      <form class="d-flex mx-3 flex-grow-1" style="max-width: 400px;">
+        <input class="form-control rounded-start-pill" type="search" placeholder="Search products..." aria-label="Search">
+        <button class="btn btn-warning rounded-end-pill" type="submit">
+          <i class="material-icons">search</i>
+        </button>
+      </form>
+
+      <!-- Right Menu -->
+      <ul class="navbar-nav ms-auto align-items-center">
+
+      <!-- Cart -->
+<li class="nav-item me-3">
+  <a class="nav-link position-relative" routerLink="/basket">
+    <i class="material-icons fs-4">shopping_bag</i>
+    <span 
+      class="badge bg-danger rounded-pill position-absolute"
+      style="top: -5px; right: -10px; padding: 3px 6px; font-size: 0.75rem;"
+    >
+      {{ (count | async)?.basketItems?.length || 0 }}
+    </span>
+  </a>
+</li>
+
+
+        <!-- Account -->
+        <li class="nav-item dropdown" #dropdown>
+  <a class="nav-link dropdown-toggle d-flex align-items-center" id="navbarDropdown" role="button" (click)="ToggleDropDown()">
+    <i class="material-icons fs-4 me-1">account_circle</i> Account
+  </a>
+
+  <div [ngClass]="{'show': visibale}" class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3"
+       aria-labelledby="navbarDropdown">
+       
+    <!-- إذا المستخدم مش مسجل دخول -->
+    <a *ngIf="!userName" class="dropdown-item" routerLink="/Account/Register">📝 Register</a>
+    <a *ngIf="!userName" class="dropdown-item" routerLink="/Account/Login">🔑 Login</a>
+    
+    <!-- إذا المستخدم مسجل دخول -->
+    <a *ngIf="userName" class="dropdown-item" routerLink="/orders">📦 My Orders</a>
+    <button *ngIf="userName" class="dropdown-item" (click)="logout()">🚪 Logout</button>
+
+  </div>
+</li>
+
+
+      </ul>
+    </div>
+  </div>
+</nav>

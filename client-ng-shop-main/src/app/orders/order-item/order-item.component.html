@@ -1,0 +1,98 @@
+<div class="container pt-4 flex-contaier" *ngIf="order; else noOrder">
+  <div class="basket-container">
+    <table class="table table-hover custom-table">
+      <thead>
+        <tr class="bg-info text-white">
+          <th>Product</th>
+          <th></th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+          <th>Rate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of order?.orderItems ?? []">
+          <td>
+            <a routerLink="/shop/product-details/{{ item.productItemId }}" class="text-dark text-decoration-none">
+              {{ item.productName }}
+            </a>
+          </td>
+          <td>
+            <img src="https://localhost:44388/{{ item.mainImage }}" class="product-image img-fluid" alt="" />
+          </td>
+          <td class="description"></td>
+          <td>{{ item.price | currency }}</td>
+          <td>{{ item.quntity }}</td>
+          <td>{{ item.quntity * item.price | currency }}</td>
+          <td>
+            <button (click)="setProductId(item.productItemId)" class="btn btn-danger">
+              rate your product
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="order-summary-container">
+    <div class="order-summary bg-light text-uppercase text-info p-3 text-center">Order Summary</div>
+    <div class="order-details p-3">
+      <p style="font-style: italic">Shipping will be added on total price</p>
+      <ul class="list-unstyled mb-4">
+        <li class="d-flex justify-content-between border-bottom py-3">
+          <strong class="text-muted">Order SubTotal</strong>
+          <strong>{{ order?.subTotal | currency }}</strong>
+        </li>
+        <li class="d-flex justify-content-between border-bottom py-3">
+          <strong class="text-muted">Order shipping</strong>
+          <strong>{{ (order?.total ?? 0) - (order?.subTotal ?? 0) | currency }}</strong>
+        </li>
+        <li class="d-flex justify-content-between border-bottom py-3">
+          <strong class="text-muted">Order Status</strong>
+          <strong [ngClass]="{
+            'text-warning': order?.status === 'Pending',
+            'text-danger': order?.status === 'PaymentFaild',
+            'text-success': order?.status === 'PaymentReceived'
+          }">{{ order?.status }}</strong>
+        </li>
+        <li class="d-flex justify-content-between border-bottom py-3">
+          <strong class="text-muted">Order total</strong>
+          <strong>{{ order?.total | currency }}</strong>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<ng-template #noOrder>
+  <p class="text-center text-danger mt-3">No order found or you are not logged in.</p>
+</ng-template>
+
+<!-- Modal -->
+<div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Product Rating</h5>
+      </div>
+      <div class="modal-body">
+        <div class="radio-input">
+          <input *ngFor="let star of [5,4,3,2,1]"
+                 class="star s{{ star }}"
+                 type="radio"
+                 [id]="'value-' + star"
+                 name="value-radio"
+                 [value]="'value-' + star"
+                 (change)="UpdateRating(star)" />
+        </div>
+        <textarea placeholder="write your review..." [(ngModel)]="rating.content" class="form-control"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="close()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="submit()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

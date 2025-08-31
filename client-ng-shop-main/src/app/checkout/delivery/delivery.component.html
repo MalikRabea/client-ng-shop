@@ -1,0 +1,22 @@
+<form [formGroup]="delivery">
+  <mat-radio-group 
+      formControlName="delivery" 
+      (change)="SetShipptingPrice()" 
+      aria-label="Select an option" 
+      class="delivery-options">
+
+    <mat-radio-button *ngFor="let item of deliveries; trackBy: trackByIndex" [value]="item.id" class="delivery-card">
+      <div class="card-content">
+        <span class="delivery-name">{{item.name}}</span>
+        <p class="delivery-desc">{{item.description}} • {{item.deliveryTime}}</p>
+        <p class="delivery-price">Price: {{item.price | currency}}</p>
+      </div>
+    </mat-radio-button>
+
+  </mat-radio-group>
+
+  <div class="stepper-buttons">
+    <button mat-raised-button color="primary" matStepperPrevious>⬅ Back</button>
+    <button mat-raised-button color="accent" (click)=" CreatePayment() " matStepperNext>Next ➡</button>
+  </div>
+</form>

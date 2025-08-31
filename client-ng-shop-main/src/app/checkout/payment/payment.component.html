@@ -1,0 +1,46 @@
+<form [formGroup]="paymentform" class="payment-form">
+  <div class="row g-3">
+    
+    <!-- Name on Card -->
+    <div class="col-12">
+      <input 
+        type="text" 
+        formControlName="nameOnCard"
+        placeholder="Name on Card" 
+        class="form-control py-3"
+        [class.is-valid]="paymentform.valid && paymentform.untouched"
+        [class.is-invalid]="paymentform.invalid && paymentform.touched" 
+      />
+      <p *ngIf="cardErrors" class="text-danger mt-1">{{cardErrors}}</p>
+    </div>
+
+    <!-- Card Elements -->
+    <div class="col-md-4">
+      <div #cardNumber class="form-control py-3 card-element"></div>
+    </div>
+    <div class="col-md-4">
+      <div #cardExpiry class="form-control py-3 card-element"></div>
+    </div>
+    <div class="col-md-4">
+      <div #cardCvc class="form-control py-3 card-element"></div>
+    </div>
+
+  </div>
+
+  <!-- Stepper Buttons -->
+  <div class="stepper-buttons mt-4 d-flex justify-content-between align-items-center">
+    <button mat-raised-button color="primary" matStepperPrevious>⬅ Back</button>
+    
+    <div class="d-flex align-items-center gap-2">
+      <button 
+        mat-raised-button 
+        color="accent" 
+        [disabled]="cardErrors != null"
+        (click)="SubmetOrder()">
+        Payment <i class="fa fa-cc-stripe text-info ms-2"></i>
+      </button>
+
+      <i *ngIf="loader" class="fa fa-spinner fa-spin text-danger ms-2"></i>
+    </div>
+  </div>
+</form>

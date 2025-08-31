@@ -1,0 +1,78 @@
+<div class="home-container">
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>{{ heroTitle }}</h1>
+      <p>{{ heroSubtitle }}</p>
+      <button class="pulse-btn btn-shop" routerLink="/shop">Shop Now</button>
+    </div>
+    <div class="hero-image">
+      <img [src]="heroImage" alt="Hero Image" />
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="featured-products mt-5 mb-5">
+    <h2>Featured Products</h2>
+    <div class="products-grid">
+      <div class="product-card" *ngFor="let product of featuredProducts">
+        <div class="img-wrapper">
+          <img [src]="product.image" [alt]="product.name">
+          <div class="price-tag">{{ product.price }}</div>
+        </div>
+        <h3>{{ product.name }}</h3>
+      </div>
+    </div>
+  </section>
+
+ <footer class="footer-gray">
+  <div class="footer-top container">
+    <div class="footer-section">
+      <h4>Information</h4>
+      <ul>
+        <li>About Us – A Leading PC Store in Jordan</li>
+        <li>Delivery Information</li>
+        <li>Privacy Policy</li>
+        <li>Terms & Conditions</li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>Customer Service</h4>
+      <ul>
+        <li>Contact Us</li>
+        <li>Dell Service Center</li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>Extras</h4>
+      <ul>
+        <li>Brands</li>
+        <li>Specials</li>
+        <li>Sitemap</li>
+        <li>My Account</li>
+        <li>Login</li>
+        <li>Register</li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>Contact Us</h4>
+      <p>Wasfi Al-Tal St. (Al-Gardens), Building #32, Amman-Jordan</p>
+      <p>(9:00AM-6:00PM) Saturday-Wednesday</p>
+      <p>(9:00AM-6:00PM) Thursday</p>
+      <p>Closed on Friday</p>
+      <p>For Sales: +962-999999999 / +962-999999999</p>
+      <p>Corporate Inquiries: +962-999999999</p>
+      <p>Dell Service / General Service: 06-6666666</p>
+      <p>Email: <a href="mailto:infoos-jo.com">infoos-jo.com</a></p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 <strong>E-Shop</strong>. All rights reserved.</p>
+  </div>
+</footer>
+
+
+</div>

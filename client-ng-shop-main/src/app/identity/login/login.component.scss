@@ -1,0 +1,68 @@
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  background: #f6f7fb;
+  padding: 20px;
+}
+
+.login-container {
+  display: flex;
+  background: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  max-width: 900px;
+  width: 100%;
+}
+
+.login-image {
+  flex: 1;
+  background: url("https://static.vecteezy.com/system/resources/previews/036/003/038/non_2x/initial-letter-e-trolley-logo-concept-icon-sign-symbol-design-element-cart-shop-shopping-logotype-illustration-template-vector.jpg")
+    center/cover no-repeat;
+}
+
+.login-form {
+  flex: 1;
+  padding: 50px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.login-form h2 {
+  font-weight: bold;
+}
+
+.btn-primary {
+  background: linear-gradient(45deg, #007bff, #00bcd4);
+  border: none;
+  transition: transform 0.2s;
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+}
+
+.animate-slide {
+  animation: slideIn 1s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

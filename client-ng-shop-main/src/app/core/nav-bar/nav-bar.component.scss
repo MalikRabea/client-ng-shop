@@ -1,0 +1,58 @@
+.glass-nav {
+  background: rgba(15, 23, 42, 0.75); // خلفية شفافة
+  backdrop-filter: blur(12px);
+  border-radius: 0 0 15px 15px;
+  padding: 0.6rem 1rem;
+
+  .navbar-brand {
+    font-size: 1.3rem;
+    color: #fff !important;
+  }
+
+  .nav-link {
+    color: #ddd !important;
+    margin: 0 5px;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      color: #fff !important;
+      transform: translateY(-2px);
+    }
+  }
+
+  .search-box {
+    .form-control {
+      border-radius: 20px 0 0 20px;
+      border: none;
+      padding: 0.5rem 1rem;
+
+    }
+    .btn {
+      border-radius: 0 20px 20px 0;
+      border: none;
+    }
+  }
+
+  .dropdown-menu {
+    border-radius: 12px;
+    min-width: 180px;
+    background: #fff;
+
+    .dropdown-item {
+      font-weight: 500;
+      padding: 10px 15px;
+      transition: background 0.3s;
+
+
+      &:hover {
+        background: #f3f4f6;
+      }
+    }
+  }
+}
+
+.logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+}

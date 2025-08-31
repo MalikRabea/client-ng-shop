@@ -1,0 +1,59 @@
+@if(product){
+<div class="container mt-5 shop-container">
+  <div class="row">
+    <h1 class="main-title mb-4">Shopping</h1>
+
+    <!-- Sidebar -->
+    <section class="col-md-3 sidebar-section">
+      <div class="sidebar card shadow-sm p-3">
+        <h4 class="section-title mb-3">Sort By Price</h4>
+        <select #SortSelected class="form-select mb-4" (change)="SortingByPrice($event)">
+          @for (item of SortingOption; track $index) {
+            <option [value]="item.value">{{item.name}}</option>
+          }
+        </select>
+
+        <h4 class="section-title mb-3">Categories</h4>
+        <ul class="list-group category-list">
+          <li [class.active]="ProductParam.CategoryId==0" (click)="SelectedId(0)" class="list-group-item">
+            All
+          </li>
+          @for (item of Cateogry; track $index) {
+            <li [class.active]="item.id==ProductParam.CategoryId" (click)="SelectedId(item.id)" class="list-group-item">
+              {{item.name}}
+            </li>
+          }
+        </ul>
+      </div>
+    </section>
+
+    <!-- Products -->
+    <section class="col-md-9">
+      <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
+        <div class="paging-container mb-2">
+          <span class="text-dark">Showing {{product.length}} of {{ProductParam.pageNumber*ProductParam.pageSize}}</span>
+        </div>
+        <div class="search-container mb-2 w-100 d-md-flex">
+          <div class="input-group search-bar w-100">
+            <input #search (keyup)="OnSearch(search.value)" (keyup.enter)="OnSearch(search.value)" type="text" class="form-control" placeholder="Search...">
+            <button (click)="OnSearch(search.value)" class="btn btn-danger">Search</button>
+            <button (click)="ResetValue()" class="btn btn-dark">Reset</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        @for (item of product; track $index) {
+          <ng-container>
+            <app-shop-item class="product-item col-lg-4 col-md-6" [Product]="item"></app-shop-item>
+          </ng-container>
+        }
+      </div>
+
+      <div class="d-flex justify-content-center align-items-center mt-4">
+        <pagination (pageChanged)="OnChangePage($event.page)" [itemsPerPage]="ProductParam.pageSize" [totalItems]="TotatlCount"></pagination>
+      </div>
+    </section>
+  </div>
+</div>
+}

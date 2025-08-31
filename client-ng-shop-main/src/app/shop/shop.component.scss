@@ -1,0 +1,104 @@
+.shop-container {
+  .main-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #1c1c1c;
+    text-transform: uppercase;
+  }
+
+  .sidebar-section {
+    .sidebar {
+      border-radius: 10px;
+      background: #f9f9f9;
+      transition: all 0.3s ease;
+      &:hover {
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      }
+
+      .section-title {
+        font-weight: 600;
+        color: #333;
+        border-bottom: 2px solid #e0e0e0;
+        padding-bottom: 5px;
+      }
+
+      .category-list {
+        .list-group-item {
+          cursor: pointer;
+          transition: all 0.2s ease;
+          &:hover {
+            background: #e6f2ff;
+            color: #007bff;
+          }
+          &.active {
+            background: #007bff;
+            color: white;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+
+  .product-item {
+    .card {
+      border: none;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+
+        .btn {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      .card-body {
+        text-align: center;
+        h5 {
+          font-weight: 600;
+          color: #1c1c1c;
+          margin: 0.5rem 0;
+        }
+        p.price {
+          color: #28a745; // أخضر هادئ
+          font-weight: bold;
+          margin-bottom: 1rem;
+        }
+
+        .btn {
+          opacity: 0;
+          transform: translateY(10px);
+          transition: all 0.3s ease;
+        }
+      }
+    }
+  }
+
+  .search-bar {
+    input {
+      border-radius: 5px 0 0 5px;
+    }
+    .btn {
+      border-radius: 0 5px 5px 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .sidebar-section {
+      margin-bottom: 20px;
+    }
+  }
+}
