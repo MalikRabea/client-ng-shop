@@ -36,7 +36,8 @@
       <ul class="navbar-nav ms-auto align-items-center">
 
       <!-- Cart -->
-<li class="nav-item me-3">
+<li class="nav-item me-3 d-flex align-items-center gap-3">
+  <!-- Basket -->
   <a class="nav-link position-relative" routerLink="/basket">
     <i class="material-icons fs-4">shopping_bag</i>
     <span 
@@ -46,7 +47,18 @@
       {{ (count | async)?.basketItems?.length || 0 }}
     </span>
   </a>
+
+  <!-- Favorites -->
+  <a class="nav-link position-relative" routerLink="/favorite">
+    <i class="material-icons fs-4">favorite</i>
+    <span 
+      class="badge bg-danger rounded-pill position-absolute"
+      style="top: -5px; right: -10px; padding: 3px 6px; font-size: 0.75rem;"
+    >
+ {{ favoriteCount }}    </span>
+  </a>
 </li>
+
 
 
         <!-- Account -->
@@ -59,12 +71,12 @@
        aria-labelledby="navbarDropdown">
        
     <!-- إذا المستخدم مش مسجل دخول -->
-    <a *ngIf="!userName" class="dropdown-item" routerLink="/Account/Register">📝 Register</a>
-    <a *ngIf="!userName" class="dropdown-item" routerLink="/Account/Login">🔑 Login</a>
+    <a *ngIf="!userName" class="dropdown-item" routerLink="/Account/Register"(click)="closeDropdown()">📝 Register</a>
+    <a *ngIf="!userName" class="dropdown-item" routerLink="/Account/Login"(click)="closeDropdown()">🔑 Login</a>
     
     <!-- إذا المستخدم مسجل دخول -->
-    <a *ngIf="userName" class="dropdown-item" routerLink="/orders">📦 My Orders</a>
-    <button *ngIf="userName" class="dropdown-item" (click)="logout()">🚪 Logout</button>
+    <a *ngIf="userName" class="dropdown-item" routerLink="/orders"(click)="closeDropdown()">📦 My Orders</a>
+    <button *ngIf="userName" class="dropdown-item" (click)="logout()"(click)="closeDropdown()">🚪 Logout</button>
 
   </div>
 </li>

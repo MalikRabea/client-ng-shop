@@ -1,3 +1,4 @@
+import { FavoriteService } from './../../favorite/favorite.service';
 import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { BasketService } from '../../basket/basket.service';
 import { Observable } from 'rxjs';
@@ -8,24 +9,26 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
-  styleUrl: './nav-bar.component.scss',
+  styleUrls: ['./nav-bar.component.scss'],
 })
 export class NavBarComponent implements OnInit {
   userName: string = '';
   visibale: boolean = false;
   count: Observable<IBasket>;
-
+  favoriteCount: number = 0; // عدد المفضلات
   @ViewChild('dropdown') dropdown!: ElementRef;
 
   constructor(
     private basketService: BasketService,
     private coreService: CoreService,
-    private router: Router
+    private router: Router,
+    private favoriteService: FavoriteService
   ) {}
 
   ngOnInit(): void {
     const basketId = localStorage.getItem('basketId');
 
+    // جلب basket count
     this.basketService.GetBasket(basketId).subscribe({
       next: () => {
         this.count = this.basketService.basket$;
@@ -37,15 +40,30 @@ export class NavBarComponent implements OnInit {
 
     // جلب اسم المستخدم وتحديث الـ BehaviorSubject
     this.coreService.getUserName().subscribe();
-    this.coreService.userName$.subscribe(value => {
-      this.userName = value;
+    this.coreService.userName$.subscribe(username => {
+      this.userName = username;
+
+      if (username) {
+        // جلب كل المفضلات وحساب العدد مباشرة
+        this.favoriteService.getFavorites(username).subscribe({
+          next: (data) => {
+            this.favoriteService.setFavoriteCount(data.length);
+          },
+          error: (err) => console.error(err)
+        });
+
+        // الاشتراك على الـ BehaviorSubject لتحديث العدد تلقائياً
+        this.favoriteService.favoriteCount$.subscribe(count => {
+          this.favoriteCount = count;
+        });
+      }
     });
   }
 
   logout() {
     this.coreService.logout().subscribe({
       next: () => {
-        this.router.navigateByUrl('/'); // بعد logout نرجع للصفحة الرئيسية
+        this.router.navigateByUrl('/');
       },
       error: (err) => console.error("Logout failed", err)
     });
@@ -54,6 +72,10 @@ export class NavBarComponent implements OnInit {
   ToggleDropDown() {
     this.visibale = !this.visibale;
   }
+
+  closeDropdown() {
+  this.visibale = false;
+}
 
   @HostListener('document:click', ['$event'])
   clickOutside(event: Event) {

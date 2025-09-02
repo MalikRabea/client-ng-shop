@@ -1,21 +1,26 @@
 <div class="card product-card h-100 shadow-sm">
-  <img
-    src="https://localhost:44388/{{ Product.photos[0].imageName }}"
-    class="card-img-top main-img"
-    alt="{{ Product.name }}"
-  />
+  <div class="image-wrapper position-relative">
+    <img
+      src="https://localhost:44388/{{ Product.photos[0]?.imageName }}"
+      class="card-img-top main-img"
+      alt="{{ Product.name }}"
+    />
+
+    <!-- أيقونة المفضلة -->
+    <button class="btn favorite-btn" (click)="addToFavorites(Product.id)">
+      <i class="fa fa-heart"></i>
+    </button>
+
+    <!-- Thumbnails أسفل الصورة الرئيسية -->
+    <div class="thumbnails d-flex gap-2 mt-2">
+      <img *ngFor="let item of Product.photos" 
+           [src]="'https://localhost:44388/' + item.imageName"
+           alt="{{ Product.name }}"
+           class="thumbnail-img"/>
+    </div>
+  </div>
 
   <div class="card-body d-flex flex-column">
-    <div class="thumbnails mb-3 d-flex gap-2">
-      @for (item of Product.photos; track $index) {
-      <img
-        src="https://localhost:44388/{{ item.imageName }}"
-        alt="{{ Product.name }}"
-        class="thumbnail-img"
-      />
-      }
-    </div>
-
     <h5 class="card-title">{{ Product.name }}</h5>
     <p class="card-text text-truncate">{{ Product.description }}</p>
 
@@ -29,12 +34,13 @@
          class="fa fa-star text-warning fs-6"></i>
     </div>
 
-    <div class="d-flex justify-content-between align-items-center mt-auto gap-2">
+    <div class="btn-group mt-auto d-flex gap-2">
       <button class="btn btn-dark btn-sm flex-fill" (click)="SetBasketValue()">
         <i class="fa fa-shopping-cart me-1"></i> Add to Cart
       </button>
+
       <button class="btn btn-success btn-sm flex-fill"
-              routerLink="/shop/product-details/{{ Product.id }}">
+              [routerLink]="'/shop/product-details/' + Product.id">
         <i class="fa fa-info-circle me-1"></i> Details
       </button>
     </div>

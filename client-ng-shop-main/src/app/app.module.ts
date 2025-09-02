@@ -13,12 +13,14 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { credentialsInterceptor } from './core/Interceptor/credentials.interceptor';
 import { AboutComponent } from './about/about.component';
 import { BestSellersComponent } from './best-sellers/best-sellers.component';
+import { FavoriteComponent } from './favorite/favorite.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AboutComponent,
-    BestSellersComponent
+    BestSellersComponent,
+    FavoriteComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +36,7 @@ import { BestSellersComponent } from './best-sellers/best-sellers.component';
       timeOut:1500,
       progressBar:true,
     }),
+    
     
     
     

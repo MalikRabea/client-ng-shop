@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { IProduct } from '../../shared/Models/Product';
 import { BasketService } from '../../basket/basket.service';
+import { FavoriteService } from '../../favorite/favorite.service';
+import { Product } from '../../shared/Models/Favorites';
 
 @Component({
   selector: 'app-shop-item',
@@ -8,7 +10,7 @@ import { BasketService } from '../../basket/basket.service';
   styleUrl: './shop-item.component.scss',
 })
 export class ShopItemComponent {
-  constructor(private _service: BasketService) {}
+  constructor(private _service: BasketService ,private favoriteService: FavoriteService) {}
   @Input() Product: IProduct;
   SetBasketValue() {
     this._service.addItemToBasket(this.Product);
@@ -16,4 +18,15 @@ export class ShopItemComponent {
   getArrayofRating(rateOfnumber:number):number[]{
     return Array(rateOfnumber).fill(0).map((x,i)=>i);
   }
+  
+addToFavorites(productId: number) {
+  const username = 'MRX_17'; // أو خذه من AuthService
+  this.favoriteService.addToFavorites(productId, username).subscribe({
+    next: () => {
+      this.favoriteService.incrementFavoriteCount();
+    },
+    error: err => console.error(err)
+  });
+}
+
 }
