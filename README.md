@@ -6,7 +6,7 @@ It connects to the ASP.NET Core API backend and provides a responsive user inter
 ---
 
 ## 🚀 Tech Stack
-- **Angular 17** – Frontend framework
+- **Angular 18** – Frontend framework
 - **TypeScript** – Strongly typed JavaScript
 - **RxJS** – Reactive programming
 - **Bootstrap / SCSS** – Styling & responsive design
